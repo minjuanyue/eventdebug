@@ -1,0 +1,25 @@
+server:
+  port: 0
+pg:
+  host: ${mata_database.host}
+  port: ${mata_database.port}
+  user: ${mata_database.username}
+  password: ${mata_database.password}
+  database: ${database.name}
+
+kafka:
+  group-id: ${kafka.group-id}
+  topic:
+    DRC_CRM_FUSED_TRAFFIC_DATA_IND: ${kafka.topic.DRC_CRM_FUSED_TRAFFIC_DATA_IND}
+    DRC_CRM_TRAFFICLIGHT_DATA_IND: ${kafka.topic.DRC_CRM_TRAFFICLIGHT_DATA_IND}
+    DRC_CRM_TRAFFIC_INFO_IND: ${kafka.topic.DRC_CRM_TRAFFIC_INFO_IND}
+    MAPS_DB_SLEUTH_INFO: ${kafka.topic.MAPS_DB_SLEUTH_INFO}
+    DRC_CRM_TCI_IND: ${kafka.topic.DRC_CRM_TCI_IND}
+    DRA_CRM_TRAFFIC_LIGHT_IND: ${kafka.topic.DRA_CRM_TRAFFIC_LIGHT_IND}
+
+wait2d: 5
+wait3d: 60
+wait2dlight: 5
+
+scheduled:
+  fixedRate: 1000

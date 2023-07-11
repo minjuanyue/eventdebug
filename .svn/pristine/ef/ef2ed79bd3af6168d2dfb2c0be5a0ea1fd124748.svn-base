@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugRoadCloseDetectorInfoMapper">
+
+    <insert id="insertList">
+        insert into
+            drc_event_debug_road_close_detector_info
+        values
+        <foreach collection="list" item="detectorInfo" index="index" separator=",">
+            (
+            #{drcEventDebugRoadCloseId},
+            #{detectorInfo.slId},
+            #{detectorInfo.slState},
+            #{detectorInfo.dbAvgSpeed},
+            #{detectorInfo.slVels},
+            #{detectorInfo.dbUtmX},
+            #{detectorInfo.dbUtmY}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="id">
+
+        insert into
+        drc_event_debug_road_close_detector_info
+        (
+        drc_event_debug_road_close_id,
+        sl_id,
+        sl_state,
+        ul_vehicles_of_reach,
+        ul_history_vehicles,
+        ul_cycle_of_non_reach,
+        ul_mean_dt,
+        ul_max_dt,
+        db_p,
+        db_m,
+        db_s2,
+        sl_adj_detector_id,
+        db_utm_x,
+        db_utm_y,
+        ul_active_source,
+        ul_active_frame,
+        ul_active_sub_frame,
+        ul_vels
+        )
+        values
+        (
+        #{drcEventDebugRoadCloseId},
+        #{slId},
+        #{slState},
+        #{ulVehiclesOfReach},
+        #{ulHistoryVehicles},
+        #{ulCycleOfNonReach},
+        #{ulMeanDt},
+        #{ulMaxDt},
+        #{dbP},
+        #{dbM},
+        #{dbS2},
+        #{slAdjDetectorId},
+        #{dbUtmX},
+        #{dbUtmY},
+        #{ulActiveSource},
+        #{ulActiveFrame},
+        #{ulActiveSubFrame},
+        #{ulVels}
+        )
+    </insert>
+
+<!--    <insert id="insertOne">-->
+<!--        <selectKey keyProperty="id" resultType="long" order="BEFORE">-->
+<!--            SELECT nextval('seq_drc_event_debug_road_close_detector_info'::regclass) as id-->
+<!--        </selectKey>-->
+
+<!--        insert into-->
+<!--            drc_event_debug_road_close_detector_info-->
+<!--        values-->
+<!--            (-->
+<!--            #{id},-->
+<!--            #{drcEventDebugRoadCloseId},-->
+<!--            #{slId},-->
+<!--            #{slState},-->
+<!--            #{ulVehiclesOfReach},-->
+<!--            #{ulHistoryVehicles},-->
+<!--            #{ulCycleOfNonReach},-->
+<!--            #{ulMeanDt},-->
+<!--            #{ulMaxDt},-->
+<!--            #{dbP},-->
+<!--            #{dbM},-->
+<!--            #{dbS2},-->
+<!--            #{slAdjDetectorId},-->
+<!--            #{dbUtmX},-->
+<!--            #{dbUtmY}-->
+<!--            )-->
+<!--    </insert>-->
+
+</mapper>

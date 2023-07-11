@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.TrafficEventLaneMapper">
+
+    <insert id="insertList">
+        insert into
+            traffic_event_lane
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            nextval('seq_traffic_event_lane'),
+            #{historyPrimaryKey},
+            #{item.laneId},
+            #{item.laneType},
+            current_timestamp
+            )
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,0 +1,86 @@
+server:
+  port: 16777
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://172.16.7.221:15432/event_debug?useUnicode=true&amp;characterEncoding=zh_CN.UTF8&amp;
+    username: DRCRM
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      idle-timeout: 600000
+      minimum-idle: 10
+      connection-timeout: 30000
+      max-lifetime: 180000
+  kafka:
+    # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
+    bootstrap-servers: 172.16.20.111:9092,172.16.20.113:9092,172.16.20.115:9092
+    #生产者的配置，大部分我们可以使用默认的，这里列出几个比较重要的属性
+    producer:
+      acks: 1 # 0-不应答。1-leader 应答。all-所有 leader 和 follower 应答。
+      #每批次发送消息的数量
+      batch-size: 1
+      #设置大于0的值将使客户端重新发送任何数据，一旦这些数据发送失败。注意，这些重试与客户端接收到发送错误时的重试没有什么不同。允许重试将潜在的改变数据的顺序，如果这两个消息记录都是发送到同一个partition，则第一个消息失败第二个发送成功，则第二条消息会比第一条消息出现要早。
+      retries: 0
+      #producer可以用来缓存数据的内存大小。如果数据产生速度大于向broker发送的速度，producer会阻塞或者抛出异常，以“block.on.buffer.full”来表明。这项设置将和producer能够使用的总内存相关，但并不是一个硬性的限制，因为不是producer使用的所有内存都是用于缓存。一些额外的内存会用于压缩（如果引入压缩机制），同样还有一些用于维护请求。
+      buffer-memory: 33554432
+      #key序列化方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    #消费者的配置
+    consumer:
+      #Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
+      auto-offset-reset: latest
+      #是否开启自动提交
+      enable-auto-commit: true
+      #自动提交的时间间隔
+      auto-commit-interval: 100
+      #key的解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #value的解码方式
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      properties:
+        sasl:
+          mechanism: PLAIN
+          jaas:
+            config: org.apache.kafka.common.security.plain.PlainLoginModule required username='broadxt_crm' password='broadxt@crm';
+        security:
+          protocol: SASL_PLAINTEXT
+      #在/usr/local/etc/kafka/consumer.properties中有配置
+    #      group-id: ${spring.kafka.consumer.group-id}
+
+    listener:
+      # 消费监听接口监听的主题不存在时，默认会报错。所以通过设置为 false ，解决报错
+      missing-topics-fatal: false
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath:mapper/*/*.xml
+    #configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+kafka:
+  consumer:
+    group-id:
+      prefix: crm-loginsert-consumer-group-006
+  #消息topic定义
+  topic:
+    DRC_CRM_EVENT_IND: XSJC_DRC_CRM_EVENT_IND
+
+    DRC_EVENT_DEBUG_ABNORMAL_PARKING: XSJC_DRC_EVENT_DEBUG_ABNORMAL_PARKING
+    DRC_EVENT_DEBUG_CONVERSE_RUNNING: XSJC_DRC_EVENT_DEBUG_CONVERSE_RUNNING
+    DRC_EVENT_DEBUG_EXCEED_SPEED: XSJC_DRC_EVENT_DEBUG_EXCEED_SPEED
+    DRC_EVENT_DEBUG_JAM: XSJC_DRC_EVENT_DEBUG_JAM
+    DRC_EVENT_DEBUG_LOW_SPEED: XSJC_DRC_EVENT_DEBUG_LOW_SPEED
+    DRC_EVENT_DEBUG_ROAD_MAINTENANCE: XSJC_DRC_EVENT_DEBUG_ROAD_MAINTENANCE
+    DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT: XSJC_DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT
+    DRC_EVENT_DEBUG_ULTRA_LOW_SPEED: XSJC_DRC_EVENT_DEBUG_ULTRA_LOW_SPEED
+    DRC_EVENT_DEBUG_VIOLATION_PERSON: XSJC_DRC_EVENT_DEBUG_VIOLATION_PERSON
+    DRC_EVENT_DEBUG_DETECTOR_INFO: XSJC_DRC_EVENT_DEBUG_DETECTOR_INFO
+
+    DRC_CRM_VT_POSITION_IND: XSJC_DRC_CRM_VT_POSITION_IND
+    DRC_CRM_KEY_VEHICLE_MAP_IND: XSJC_DRC_CRM_KEY_VEHICLE_MAP_IND
+
+logging:
+  config: classpath:logback-spring.xml

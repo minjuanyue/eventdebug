@@ -1,0 +1,33 @@
+package com.bxt.loginsert.domain.po.debug;
+
+import lombok.Builder;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+@Builder
+public class RoadCloseDetectorInfoPO {
+
+    private Long id;
+    private Long drcEventDebugRoadCloseId;
+    private Integer slId;
+    private Integer slState;
+    private Long ulVehiclesOfReach;
+    private Long ulHistoryVehicles;
+    private Long ulCycleOfNonReach;
+    private Long ulMeanDt;
+    private Long ulMaxDt;
+    private List<RoadCloseAdjDetectorInfoPO> stAdjInfos;
+    private Double dbP;
+    private Double dbM;
+    private Double dbS2;
+    private Integer slAdjDetectorId;
+    private Double dbUtmX;
+    private Double dbUtmY;
+
+    private Integer ulActiveSource;
+    private Long ulActiveFrame;
+    private Long ulActiveSubFrame;
+    private Long ulVels;
+}

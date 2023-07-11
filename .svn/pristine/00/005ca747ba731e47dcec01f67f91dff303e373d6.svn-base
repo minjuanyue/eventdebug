@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: bulk-insert-kafka
+  cloud:
+    nacos:
+      server-addr: nacos.crm.broadxt.com:38848
+      config:
+        enabled: true
+        group: CRM-BULK-INSERT
+        namespace: ${nacos.namespace}
+        prefix: ${spring.application.name}
+        file-extension: yaml
+        extension-configs:
+          - data-id: actuator.yaml
+            group: SHARE
+          - data-id: kafka.yaml
+            group: SHARE
+          - data-id: refresh.yaml
+            group: SHARE
+          - data-id: db.yaml
+            group: SHARE
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+        namespace: ${nacos.namespace}
+nacos:
+  namespace: 10cd5390-b6b4-49b3-8e9e-6ac7c8267a62

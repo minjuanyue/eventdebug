@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.TrafficEventImageMapper">
+
+    <insert id="insertList">
+        insert into
+            traffic_event_image
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            nextval('seq_traffic_event_image'),
+            #{trafficEventId},
+            #{item.imageUrl},
+            current_timestamp,
+            #{item.preImageUrl},
+            #{item.imagePath},
+            #{item.preImagePath}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

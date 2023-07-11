@@ -1,0 +1,85 @@
+package com.bxt.loginsert.domain.po.debug;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
+public class DrcEventDebugAbnormalParkingPO {
+
+    private Long frame;
+
+    private Long subFrame;
+
+    private Long rctpId;
+
+    private Long eventId;
+
+    private Integer eventType;
+
+    private Integer state;
+
+    private Integer cState;
+
+    private Integer obsState;
+
+    private double diffDistance;
+
+    private Long ulMaxWaitTime;
+
+    private double centerPostionX;
+
+    private double centerPostionY;
+
+    private double direcRad;
+
+    private Long largeMajorAxisRadius;
+
+    private Long largeMinorAxisRadius;
+
+    private Long smallMajorAxisRadius;
+
+    private Long smallMinorAxisRadius;
+
+    private Long newObsUuid;
+
+    private Long newObsFrame;
+
+    private Long newObsSubFrame;
+
+    private double newObsX;
+
+    private double newObsY;
+
+    private Long newObsDrsu;
+
+    private Long newObsLane;
+
+    private Long newObsHdLane;
+
+    private Long newObsHdConnection;
+
+    private Long firstObsUuid;
+
+    private Long firstObsFrame;
+
+    private Long firstObsSubFrame;
+
+    private double firstObsX;
+
+    private double firstObsY;
+
+    private Long firstObsDrsu;
+
+    private Long firstObsLane;
+
+    private Long firstObsHdLane;
+
+    private Long firstObsHdConnection;
+
+    private String strDetectorInfo;
+
+    private String strExtParam;
+
+    private Integer ulDrcId;
+}

@@ -1,0 +1,320 @@
+package com.bxt.loginsert.kafka.consumer;
+
+import com.bxt.loginsert.common.MsgDef;
+import com.bxt.loginsert.domain.service.DrcEventDebugService;
+import com.bxt.loginsert.domain.service.DrcEventService;
+import com.bxt.loginsert.domain.service.DrcVehiclePositionService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.header.Header;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+
+@Slf4j
+@Component
+public class Consumer {
+
+    @Resource
+    private DrcEventDebugService drcEventDebugService;
+    @Resource
+    private DrcEventService drcEventService;
+    @Resource
+    private DrcVehiclePositionService drcVehiclePositionService;
+
+    /**
+     * 交通事件
+     * @param record
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_CRM_EVENT_IND}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_CRM_EVENT_IND}")
+    public void onMessageTrafficEvent(ConsumerRecord<String, byte[]> record) {
+
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_CRM_EVENT_IND, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_CRM_EVENT_IND || msg == null)
+            return;
+
+        try {
+            drcEventService.saveOrUpdateTrafficEvent(msg);
+        } catch (Exception e) {
+            log.error("saveOrUpdateTrafficEvent error.", e);
+        }
+    }
+
+    /**
+     * 异常停车
+     * DRC_EVENT_DEBUG_ABNORMAL_PARKING
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_ABNORMAL_PARKING}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_ABNORMAL_PARKING}")
+    public void onMessageTrafficEventDebugInfo1(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_ABNORMAL_PARKING, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_ABNORMAL_PARKING || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveAbnormalParking(msg);
+        } catch (Exception e) {
+            log.error("saveAbnormalParking error.", e);
+        }
+    }
+
+    /**
+     * 逆行
+     * DRC_EVENT_DEBUG_CONVERSE_RUNNING
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_CONVERSE_RUNNING}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_CONVERSE_RUNNING}")
+    public void onMessageTrafficEventDebugInfo2(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_CONVERSE_RUNNING, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_CONVERSE_RUNNING || msg == null)
+            return;
+
+        // TODO
+    }
+
+    /**
+     * 超速
+     * DRC_EVENT_DEBUG_EXCEED_SPEED
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_EXCEED_SPEED}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_EXCEED_SPEED}")
+    public void onMessageTrafficEventDebugInfo3(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_EXCEED_SPEED, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_EXCEED_SPEED || msg == null)
+            return;
+
+        // TODO
+    }
+
+    /**
+     * 拥堵
+     * DRC_EVENT_DEBUG_JAM
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_JAM}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_JAM}")
+    public void onMessageTrafficEventDebugInfo4(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_JAM, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_JAM || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveJam(msg);
+        } catch (Exception e) {
+            log.error("saveJam error.", e);
+        }
+
+    }
+
+    /**
+     * 低速
+     * DRC_EVENT_DEBUG_LOW_SPEED
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_LOW_SPEED}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_LOW_SPEED}")
+    public void onMessageTrafficEventDebugInfo5(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_LOW_SPEED, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_LOW_SPEED || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveLowSpeed(msg);
+        } catch (Exception e) {
+            log.error("saveLowSpeed error.", e);
+        }
+
+    }
+
+    /**
+     * 道路关闭
+     * DRC_EVENT_DEBUG_ROAD_MAINTENANCE
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_ROAD_MAINTENANCE}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_ROAD_MAINTENANCE}")
+    public void onMessageTrafficEventDebugInfo6(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_ROAD_MAINTENANCE, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_ROAD_MAINTENANCE || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveRoadClose(msg);
+        } catch (Exception e) {
+            log.error("saveRoadClose error.", e);
+        }
+
+    }
+
+    /**
+     * 交通意外
+     * DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT}")
+    @Transactional
+    public void onMessageTrafficEventDebugInfo7(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveTrafficAccident(msg);
+        } catch (Exception e) {
+            log.error("saveTrafficAccident error.", e);
+        }
+    }
+
+    /**
+     * 超低速
+     * DRC_EVENT_DEBUG_ULTRA_LOW_SPEED
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_ULTRA_LOW_SPEED}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_ULTRA_LOW_SPEED}")
+    public void onMessageTrafficEventDebugInfo8(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_ULTRA_LOW_SPEED, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_ULTRA_LOW_SPEED || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveUltraLowSpeed(msg);
+        } catch (Exception e) {
+            log.error("saveUltraLowSpeed error.", e);
+        }
+
+    }
+
+    /**
+     * 违章人
+     * DRC_EVENT_DEBUG_VIOLATION_PERSON
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_VIOLATION_PERSON}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_VIOLATION_PERSON}")
+    public void onMessageTrafficEventDebugInfo9(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_VIOLATION_PERSON, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_VIOLATION_PERSON || msg == null)
+            return;
+
+        // TODO
+    }
+
+    /**
+     * 监测器信息
+     * DRC_EVENT_DEBUG_DETECTOR_INFO
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_EVENT_DEBUG_DETECTOR_INFO}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_EVENT_DEBUG_DETECTOR_INFO}")
+    public void onMessageTrafficEventDebugInfo10(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_EVENT_DEBUG_DETECTOR_INFO, message key: {}", key);
+        if (Integer.parseInt(key) != MsgDef.DRC_EVENT_DEBUG_DETECTOR_INFO || msg == null)
+            return;
+
+        try {
+            drcEventDebugService.saveDetectorInfo(msg);
+        } catch (Exception e) {
+            log.error("saveDetectorInfo error.", e);
+        }
+
+    }
+
+
+    /**
+     * 智能车轨迹
+     * DRC_CRM_VT_POSITION_IND
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_CRM_VT_POSITION_IND}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_CRM_VT_POSITION_IND}")
+    public void onMessageVTPosition(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_CRM_VT_POSITION_IND, message key: {}", key);
+
+        try {
+            drcVehiclePositionService.saveOrUpdateVtPosition(msg);
+        } catch (Exception e) {
+            log.error("saveOrUpdateVtPosition error.", e);
+        }
+
+    }
+
+    /**
+     * 智能车轨迹
+     * DRC_CRM_KEY_VEHICLE_MAP_IND
+     */
+    @KafkaListener(topics = "${kafka.topic.DRC_CRM_KEY_VEHICLE_MAP_IND}",
+            groupId = "${kafka.consumer.group-id.prefix}-${kafka.topic.DRC_CRM_KEY_VEHICLE_MAP_IND}")
+    public void onMessageKeyVehicleMap(ConsumerRecord<String, byte[]> record) {
+        byte[] msg = record.value();
+        Header msgId = record.headers().lastHeader("MsgId");
+        if (msgId == null)
+            return;
+        String key = new String(msgId.value());
+        log.debug("topic DRC_CRM_KEY_VEHICLE_MAP_IND, message key: {}", key);
+
+        try {
+            drcVehiclePositionService.saveOrUpdateZebraRoadInfo(msg);
+        } catch (Exception e) {
+            log.error("saveOrUpdateZebraRoadInfo error.", e);
+        }
+
+    }
+
+}

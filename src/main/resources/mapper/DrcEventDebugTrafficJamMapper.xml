@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugTrafficJamMapper">
+
+    <insert id="insertOne">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT nextval('seq_drc_event_debug_traffic_jam'::regclass) as id
+        </selectKey>
+
+        insert into
+            drc_event_debug_traffic_jam
+        values
+            (
+            #{id},
+            #{ulFrame},
+            #{ulSubFrame},
+            #{ulCycle},
+            #{ulDrcId}
+            )
+    </insert>
+
+</mapper>

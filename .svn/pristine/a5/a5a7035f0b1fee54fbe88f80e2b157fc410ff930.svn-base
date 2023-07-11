@@ -1,0 +1,6 @@
+server:
+  port: ${server.port}
+
+spring:
+  profiles:
+    include: redis,db,rabbitmq

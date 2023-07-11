@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugTrafficAccidentObsMapper">
+
+
+    <insert id="insertOne">
+        insert into
+            drc_event_debug_traffic_accident_obs
+        values
+            (
+            nextval('seq_drc_event_debug_traffic_accident_obs'),
+            #{eventId},
+            #{vehicleInfo.ulUuid},
+            #{vehicleInfo.ulFrameFirst},
+            #{vehicleInfo.ulFrameSecond},
+            #{vehicleInfo.dbVehiclePositionX},
+            #{vehicleInfo.dbVehiclePositionY},
+            #{vehicleInfo.ulMasterDrsuid},
+            #{vehicleInfo.ulMasterLandId},
+            #{vehicleInfo.ulHdLaneId},
+            #{vehicleInfo.ulHdConnectionId},
+            #{vehicleInfo.strPlateNo},
+            #{vehicleInfo.isHighFlow},
+            #{vehicleInfo.ulAbParkingEventId}
+            )
+    </insert>
+
+    <insert id="insertList">
+        insert into
+            drc_event_debug_traffic_accident_obs
+        values
+        <foreach collection="list" item="vehicleInfo" index="index" separator=",">
+            (
+            #{drcEventDebugTrafficAccidentId},
+            #{vehicleInfo.ulUuid},
+            #{vehicleInfo.ulFrameFirst},
+            #{vehicleInfo.ulFrameSecond},
+            #{vehicleInfo.dbVehiclePositionX},
+            #{vehicleInfo.dbVehiclePositionY},
+            #{vehicleInfo.ulMasterDrsuId},
+            #{vehicleInfo.ulMasterLandId},
+            #{vehicleInfo.ulHdLaneId},
+            #{vehicleInfo.ulHdConnectionId},
+            #{vehicleInfo.strPlateNo},
+            #{vehicleInfo.isHighFlow},
+            #{vehicleInfo.ulAbParkingEventId}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugUltraLowSpeedMapper" >
+
+  <insert id="insertSelective" parameterType="com.bxt.loginsert.domain.po.debug.DrcEventDebugUltraLowSpeedPO" >
+    insert into drc_event_debug_ultra_low_speed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="frame != null" >
+        frame,
+      </if>
+      <if test="subframe != null" >
+        subframe,
+      </if>
+      <if test="eventId != null" >
+        event_id,
+      </if>
+      <if test="evenType != null" >
+        even_type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="dbObsUtmX != null" >
+        db_obs_utm_x,
+      </if>
+      <if test="dbObsUtmY != null" >
+        db_obs_utm_y,
+      </if>
+      <if test="slid != null" >
+        slid,
+      </if>
+      <if test="dbAvgSpeed != null" >
+        db_avg_speed,
+      </if>
+      <if test="dbObsSpeed != null" >
+        db_obs_speed,
+      </if>
+      <if test="drsuId != null" >
+        drsu_id,
+      </if>
+      <if test="laneId != null" >
+        lane_id,
+      </if>
+      <if test="hdlaneId != null" >
+        hdlane_id,
+      </if>
+      <if test="hdconnectionId != null" >
+        hdconnection_id,
+      </if>
+      <if test="plateNo != null" >
+        plate_no,
+      </if>
+      <if test="strDetectorInfo != null" >
+        str_detector_info,
+      </if>
+      <if test="ulDrcId != null" >
+        ul_drc_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="frame != null" >
+        #{frame,jdbcType=INTEGER},
+      </if>
+      <if test="subframe != null" >
+        #{subframe,jdbcType=INTEGER},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=BIGINT},
+      </if>
+      <if test="evenType != null" >
+        #{evenType,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=BIGINT},
+      </if>
+      <if test="dbObsUtmX != null" >
+        #{dbObsUtmX,jdbcType=DOUBLE},
+      </if>
+      <if test="dbObsUtmY != null" >
+        #{dbObsUtmY,jdbcType=DOUBLE},
+      </if>
+      <if test="slid != null" >
+        #{slid,jdbcType=INTEGER},
+      </if>
+      <if test="dbAvgSpeed != null" >
+        #{dbAvgSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="dbObsSpeed != null" >
+        #{dbObsSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="drsuId != null" >
+        #{drsuId,jdbcType=INTEGER},
+      </if>
+      <if test="laneId != null" >
+        #{laneId,jdbcType=INTEGER},
+      </if>
+      <if test="hdlaneId != null" >
+        #{hdlaneId,jdbcType=INTEGER},
+      </if>
+      <if test="hdconnectionId != null" >
+        #{hdconnectionId,jdbcType=INTEGER},
+      </if>
+      <if test="plateNo != null" >
+        #{plateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="strDetectorInfo != null" >
+        #{strDetectorInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="ulDrcId != null" >
+        #{ulDrcId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

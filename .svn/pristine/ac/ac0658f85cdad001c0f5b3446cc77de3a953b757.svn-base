@@ -1,0 +1,8 @@
+package com.bxt.loginsert.domain.service;
+
+import com.google.protobuf.InvalidProtocolBufferException;
+
+public interface DrcEventService {
+
+   void saveOrUpdateTrafficEvent(byte[] msg) throws InvalidProtocolBufferException;
+}

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a0d57677-a3eb-4b9e-8400-8c026cacd06a" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="localRepository" value="D:\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../software/apache-maven-3.6.0" />
+        <option name="showDialogWithAdvancedSettings" value="true" />
+        <option name="userSettingsFile" value="D:\software\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="#JAVA_HOME" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2E1s6TxNVnccYORPdUspdDdXvDP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project\loginsert\lib" />
+      <recent name="D:\project\loginsert\src\main\java\com\bxt\loginsert" />
+      <recent name="D:\project\loginsert\src\main\resources\mapper" />
+      <recent name="D:\project\loginsert\src\main\java\com\bxt\loginsert\domain\repository" />
+      <recent name="D:\project\loginsert\src\main\java\com\bxt\loginsert\domain\po" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.bxt.loginsert.domain.po.debug" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bxt.loginsert.domain.repository" />
+      <recent name="com.bxt.loginsert.domain.po" />
+      <recent name="com.bxt.loginsert.util" />
+      <recent name="com.bxt.loginsert.common" />
+      <recent name="com.bxt.loginsert.consumer" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LoginsertApplicationTests (1)">
+    <configuration name="LoginsertApplicationTests (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bxt.loginsert.LoginsertApplicationTests" />
+      <module name="loginsert" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bxt.loginsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginsertApplicationTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bxt.loginsert.LoginsertApplicationTests" />
+      <module name="loginsert" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bxt.loginsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginsertApplicationTests.batchInsertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loginsert" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bxt.loginsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bxt.loginsert" />
+      <option name="MAIN_CLASS_NAME" value="com.bxt.loginsert.LoginsertApplicationTests" />
+      <option name="METHOD_NAME" value="batchInsertTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginsertApplicationTests.batchInsertTest22" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loginsert" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bxt.loginsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bxt.loginsert" />
+      <option name="MAIN_CLASS_NAME" value="com.bxt.loginsert.LoginsertApplicationTests" />
+      <option name="METHOD_NAME" value="batchInsertTest22" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginsertApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loginsert" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bxt.loginsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bxt.loginsert" />
+      <option name="MAIN_CLASS_NAME" value="com.bxt.loginsert.LoginsertApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginsertApplicationTests.forEachTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="loginsert" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bxt.loginsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bxt.loginsert" />
+      <option name="MAIN_CLASS_NAME" value="com.bxt.loginsert.LoginsertApplicationTests" />
+      <option name="METHOD_NAME" value="forEachTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginsertApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loginsert" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bxt.loginsert.LoginsertApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LoginsertApplicationTests (1)" />
+        <item itemvalue="Application.LoginsertApplicationTests" />
+        <item itemvalue="JUnit.LoginsertApplicationTests.batchInsertTest22" />
+        <item itemvalue="JUnit.LoginsertApplicationTests.batchInsertTest" />
+        <item itemvalue="JUnit.LoginsertApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\DELL\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a0d57677-a3eb-4b9e-8400-8c026cacd06a" name="Changes" comment="" />
+      <created>1661774251884</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1661774251884</updated>
+      <workItem from="1661774253328" duration="372000" />
+      <workItem from="1661774952027" duration="275000" />
+      <workItem from="1661775394963" duration="909000" />
+      <workItem from="1661776693442" duration="592000" />
+      <workItem from="1661777310488" duration="469000" />
+      <workItem from="1661777806448" duration="66000" />
+      <workItem from="1661777932914" duration="20000" />
+      <workItem from="1661822113708" duration="3567000" />
+      <workItem from="1661825724330" duration="65437000" />
+      <workItem from="1662015875936" duration="17101000" />
+      <workItem from="1662081435070" duration="8014000" />
+      <workItem from="1662106000816" duration="3655000" />
+      <workItem from="1662340349477" duration="3904000" />
+      <workItem from="1662607367247" duration="495000" />
+      <workItem from="1662620110263" duration="1600000" />
+      <workItem from="1662687761876" duration="1261000" />
+      <workItem from="1662690571376" duration="4188000" />
+      <workItem from="1662709851818" duration="3206000" />
+      <workItem from="1663030824539" duration="836000" />
+      <workItem from="1663070940958" duration="95000" />
+      <workItem from="1663123544644" duration="1494000" />
+      <workItem from="1663134560055" duration="2111000" />
+      <workItem from="1663299494724" duration="569000" />
+      <workItem from="1663316391605" duration="22000" />
+      <workItem from="1663316470705" duration="615000" />
+      <workItem from="1663395121338" duration="790000" />
+      <workItem from="1663743611505" duration="1186000" />
+      <workItem from="1663812417583" duration="1304000" />
+      <workItem from="1664262337850" duration="2440000" />
+      <workItem from="1664422705487" duration="8859000" />
+      <workItem from="1665383062039" duration="62000" />
+      <workItem from="1665489236554" duration="840000" />
+      <workItem from="1665539819578" duration="921000" />
+      <workItem from="1665641909845" duration="800000" />
+      <workItem from="1666060971579" duration="112000" />
+      <workItem from="1666778513212" duration="769000" />
+      <workItem from="1667201254904" duration="143000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bxt/loginsert/domain/service/impl/DrcEventDebugServiceImpl.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bxt/loginsert/domain/service/impl/DrcEventDebugServiceImpl.java</url>
+          <line>441</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

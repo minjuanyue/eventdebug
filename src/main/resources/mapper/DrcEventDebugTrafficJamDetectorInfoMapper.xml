@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugTrafficJamDetectorInfoMapper">
+
+    <insert id="insertList">
+        insert into
+            drc_event_debug_traffic_jam_detector_info
+        values
+        <foreach collection="list" item="detectorInfo" index="index" separator=",">
+            (
+            #{drcEventDebugTrafficJamId},
+            #{detectorInfo.slId},
+            #{detectorInfo.slState},
+            #{detectorInfo.dbAvgSpeed},
+            #{detectorInfo.slVels},
+            #{detectorInfo.dbUtmX},
+            #{detectorInfo.dbUtmY}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

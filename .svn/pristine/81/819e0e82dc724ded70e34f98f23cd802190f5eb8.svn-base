@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.track.TrackZebraObstcleMapper">
+
+    <insert id="insertList">
+        insert into
+            drc_zebra_obstcle
+            (
+            zebra_id,
+            zebra_obstcle_id,
+            object_type,
+            center_x,
+            center_y,
+            center_z,
+            theta,
+            length,
+            width,
+            height,
+            speed_x,
+            speed_y,
+            speed_z,
+            vehicle_class,
+            vehicle_color,
+            vehicle_brand,
+            vehicle_model,
+            vehicle_styles,
+            plate_class,
+            plate_color,
+            plate_no,
+            dra_timestamp
+            )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.zebraId},
+            #{item.zebraObstcleId},
+            #{item.eObjectType},
+            #{item.centerX},
+            #{item.centerY},
+            #{item.centerZ},
+            #{item.theta},
+            #{item.length},
+            #{item.width},
+            #{item.height},
+            #{item.speedX},
+            #{item.speedY},
+            #{item.speedZ},
+            #{item.vehicleClass},
+            #{item.vehicleColor},
+            #{item.vehicleBrand},
+            #{item.vehicleModel},
+            #{item.vehicleStyles},
+            #{item.plateClass},
+            #{item.plateColor},
+            #{item.plateNo},
+            #{item.draTimestamp}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

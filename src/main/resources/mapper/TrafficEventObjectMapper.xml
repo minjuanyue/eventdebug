@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.TrafficEventObjectMapper">
+
+    <insert id="insertList" parameterType="com.bxt.loginsert.domain.po.TrafficEventObjectPO">
+        insert into
+            traffic_event_object
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            nextval('seq_traffic_event_object'),
+            #{historyPrimaryKey},
+            #{item.objectId},
+            #{item.objectType},
+            #{item.vehicleColor},
+            #{item.plateType},
+            #{item.plateColor},
+            #{item.plateNum},
+            #{item.objectSpeed},
+            current_timestamp,
+            #{item.trackId},
+            #{item.trackIdListStr},
+            #{item.entryTime},
+            #{item.utmX},
+            #{item.utmY},
+            #{item.utmZ},
+            #{item.targetCameraIp}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

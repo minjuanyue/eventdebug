@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.TrafficEventMapper">
+
+    <sql id="trafficEventQuerySql">
+        event.*,
+            object.id as objId,
+--             object.traffic_event_history_id,
+            object.object_id,
+            object.object_type,
+            object.vehicle_color,
+            object.plate_type,
+            object.plate_color,
+            object.plate_num,
+            object.object_speed,
+            object.create_time as objCreateTime,
+            object.obj_track_Id,
+            object.track_ids,
+            object.entry_time,
+            object.utm_x obj_utm_x,
+            object.utm_y obj_utm_y,
+            object.utm_z obj_utm_z,
+            object.target_camera_ip,
+            pileloc.id as pilelocId,
+            pileloc.number as number,
+            pileloc.distance as distance,
+            gpsloc.id as gpslocId,
+            gpsloc.lng,
+            gpsloc.lat,
+            gpsloc.ele,
+            judgeTime.id as judgeTimeId,
+            judgeTime.judge_time,
+            utmloc.id as utmLocId,
+            utmloc.utm_x,
+            utmloc.utm_y,
+            utmloc.utm_z,
+            image.image_url,
+            image.pre_image_url,
+            image.image_path,
+            image.pre_image_path,
+            image.id as trafficEventImageId,
+            image.create_time as image_create_time,
+            lane.id as laneInfoId,
+            lane.lane_id,
+            lane.lane_type
+    </sql>
+
+    <resultMap id="trafficEventMap" type="com.bxt.loginsert.domain.po.TrafficEventPO">
+        <result column="traffic_event_id"               property="trafficEventId"/>
+        <result column="drc_id"                         property="drcId"/>
+        <result column="traffic_event_type"             property="trafficEventType"/>
+        <result column="direction_indication"           property="directionIndication"/>
+        <result column="is_relieved"                    property="isRelieved"/>
+        <result column="relieve_time"                   property="relieveTime"/>
+        <result column="drc_event_report_id"            property="drcEventReportId"/>
+        <result column="is_mock"                        property="isMock"/>
+        <result column="hd_lane_ids"                    property="hdLaneIds"/>
+        <result column="hd_connection_ids"              property="hdConnectionIds"/>
+        <result column="check_status"                   property="checkStatus"/>
+        <result column="spoiling_length"                property="spoilingLength"/>
+        <result column="spoiling_width"                 property="spoilingWidth"/>
+        <result column="spoiling_height"                property="spoilingHeight"/>
+        <result column="sub_node_ids"                   property="subNodeIds"/>
+        <result column="node_ids"                       property="nodeIds"/>
+        <result column="priority"                       property="priority"/>
+        <result column="event_radius"                   property="eventRadius"/>
+        <result column="velocity"                       property="velocity"/>
+        <result column="description"                    property="description"/>
+        <result column="create_time"                    property="createTime"/>
+        <result column="update_time"                    property="updateTime"/>
+        <result column="road_name"                      property="roadName"/>
+        <result column="jam_level"                      property="jamLevel"/>
+        <result column="event_confidence"               property="eventConfidence"/>
+        <result column="drc_event_report_time"          property="drcEventReportTime"/>
+        <result column="occur_time"                     property="occurTime"/>
+        <result column="traffic_event_cause"            property="trafficEventCause"/>
+        <result column="forbidden_zone_id"              property="forbiddenZoneId"/>
+        <result column="section_id"                     property="sectionId"/>
+        <result column="cause_level_one"                property="causeLevelOne"/>
+        <result column="cause_level_two"                property="causeLevelTwo"/>
+        <collection property="laneInfo" ofType="com.bxt.loginsert.domain.po.LaneInfoPO">
+            <id column="laneInfoId"                     property="id"/>
+            <result column="traffic_event_history_id"   property="trafficEventHistoryId"/>
+            <result column="lane_id"                    property="laneId"/>
+            <result column="lane_type"                  property="laneType"/>
+        </collection>
+        <collection property="trafficEventImageUrls" ofType="com.bxt.loginsert.domain.po.TrafficEventImagePO">
+            <id column="trafficEventImageId"            property="id"/>
+            <result column="image_create_time"           property="createTime"/>
+            <result column="image_url"                  property="imageUrl"/>
+            <result column="pre_image_url"              property="preImageUrl"/>
+            <result column="image_path"                 property="imagePath"/>
+            <result column="pre_image_path"              property="preImagePath"/>
+        </collection>
+        <collection property="judgeTimes" ofType="com.bxt.loginsert.domain.po.JudgeTimePO">
+            <id column="judgeTimeId"                    property="id"/>
+            <result column="traffic_event_history_id"   property="trafficEventHistoryId"/>
+            <result column="judge_time"                 property="judgeTime"/>
+        </collection>
+        <collection property="utmLoc" ofType="com.bxt.loginsert.domain.po.UtmLocPO">
+            <id column="utmLocId"                       property="id"/>
+            <result column="traffic_event_history_id"   property="trafficEventHistoryId"/>
+            <result column="utm_x"                      property="utmX"/>
+            <result column="utm_y"                      property="utmY"/>
+            <result column="utm_z"                      property="utmZ"/>
+        </collection>
+        <collection property="gpsLoc" ofType="com.bxt.loginsert.domain.po.GpsLocPO">
+            <id column="gpslocId"                       property="id"/>
+            <result column="traffic_event_history_id"   property="trafficEventHistoryId"/>
+            <result column="lng"                        property="lng"/>
+            <result column="lat"                        property="lat"/>
+            <result column="ele"                        property="ele"/>
+        </collection>
+        <collection property="pileloc" ofType="com.bxt.loginsert.domain.po.PileLocPO">
+            <id column="pilelocId"                      property="id"/>
+            <result column="traffic_event_history_id"   property="trafficEventHistoryId"/>
+            <result column="number"                     property="number"/>
+            <result column="distance"                   property="distance"/>
+        </collection>
+        <collection property="objects" ofType="com.bxt.loginsert.domain.po.TrafficEventObjectPO">
+            <id column="objId"                          property="id"/>
+            <result column="traffic_event_history_id"   property="trafficEventHistoryId"/>
+            <result column="object_id"                  property="objectId"/>
+            <result column="object_type"                property="objectType"/>
+            <result column="vehicle_color"              property="vehicleColor"/>
+            <result column="plate_type"                 property="plateType"/>
+            <result column="plate_color"                property="plateColor"/>
+            <result column="plate_num"                  property="plateNum"/>
+            <result column="object_speed"               property="objectSpeed"/>
+            <result column="objCreateTime"              property="createTime"/>
+            <result column="obj_track_Id"               property="trackId"/>
+            <result column="track_ids"                  property="trackIdListStr"/>
+            <result column="entry_time"               property="entryTime"/>
+            <result column="obj_utm_x"               property="utmX"/>
+            <result column="obj_utm_y"               property="utmY"/>
+            <result column="obj_utm_z"               property="utmZ"/>
+            <result column="target_camera_ip"               property="targetCameraIp"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="findSignEvent" resultMap="trafficEventMap">
+        select
+        event.*
+        from
+        traffic_event event
+        <where>
+            <if test="drcEventReportId != null">
+                and event.drc_event_report_id = #{drcEventReportId}
+            </if>
+            <if test="isRelieved != null">
+                and event.is_relieved = #{isRelieved}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertOne">
+        <selectKey keyProperty="trafficEventId" resultType="long" order="BEFORE">
+            SELECT nextval('seq_traffic_event'::regclass) as trafficEventId
+        </selectKey>
+
+        insert into
+        traffic_event
+        values (
+        #{trafficEventId},
+        #{drcId},
+        #{trafficEventType},
+        #{directionIndication},
+        #{isRelieved},
+        #{relieveTime},
+        #{drcEventReportId},
+        #{isMock},
+        #{hdLaneIds},
+        #{hdConnectionIds},
+        #{checkStatus},
+        #{spoilingLength},
+        #{spoilingWidth},
+        #{spoilingHeight},
+        #{subNodeIds},
+        #{nodeIds},
+        #{priority},
+        #{eventRadius},
+        #{velocity},
+        #{description},
+        current_timestamp,<!-- #{createTime} -->
+        current_timestamp,<!--#{updateTime},-->
+        #{roadName},
+        #{jamLevel},
+        #{eventConfidence},
+        #{drcEventReportTime},
+        #{occurTime},
+        #{trafficEventCause},
+        #{manualConfirm},
+        #{forbiddenZoneId},
+        #{sectionId}
+        )
+    </insert>
+
+    <select id="findOne" resultMap="trafficEventMap">
+        select
+        <include refid="trafficEventQuerySql"></include>
+        from
+        traffic_event event
+        inner join ( select max(id) as id, traffic_event_id from traffic_event_history WHERE drc_event_report_time notnull  group by traffic_event_id) history on history.traffic_event_id = event.traffic_event_id
+        left  join  traffic_event_object object on history.id = object.traffic_event_history_id
+        left  join  traffic_event_pileloc pileloc on history.id = pileloc.traffic_event_history_id
+        left  join  traffic_event_gpsloc gpsloc on history.id = gpsloc.traffic_event_history_id
+        left  join  traffic_event_judge_time judgeTime on history.id = judgeTime.traffic_event_history_id
+        left  join  traffic_event_utmloc utmloc on history.id = utmloc.traffic_event_history_id
+        left  join  traffic_event_image image on event.traffic_event_id = image.traffic_event_id
+        left  join  traffic_event_lane lane on history.id = lane.traffic_event_history_id
+        <where>
+            <if test="trafficEventId != null and trafficEventId != ''">
+                and event.traffic_event_id = #{trafficEventId}
+            </if>
+            <if test="drcEventReportId != null">
+                and event.drc_event_report_id = #{drcEventReportId}
+            </if>
+            <if test="updateTime != null">
+                and history.update_time = #{updateTime}
+            </if>
+        </where>
+        order by image.create_time desc
+    </select>
+
+    <update id="update">
+        update traffic_event
+        <trim prefix="set" suffixOverrides=",">
+
+            <if test="drcId != null">                                                  drc_id = #{drcId},</if>
+            <if test="trafficEventType != null">                                       traffic_event_type = #{trafficEventType},</if>
+            <if test="directionIndication != null">                                    direction_indication = #{directionIndication},</if>
+            <if test="isRelieved != null">                                             is_relieved = #{isRelieved},</if>
+            <if test="relieveTime != null">                                            relieve_time = #{relieveTime},</if>
+            <if test="drcEventReportId != null">                                       drc_event_report_id = #{drcEventReportId},</if>
+            <if test="isMock != null">                                                 is_mock = #{isMock},</if>
+            <if test="hdLaneIds != null and hdLaneIds != ''">                          hd_lane_ids = #{hdLaneIds},</if>
+            <if test="hdConnectionIds != null and hdConnectionIds != ''">              hd_connection_ids = #{hdConnectionIds},</if>
+            <if test="checkStatus != null">                                            check_status = #{checkStatus},</if>
+            <if test="spoilingLength != null">                                         spoiling_length = #{spoilingLength},</if>
+            <if test="spoilingWidth != null">                                          spoiling_width = #{spoilingWidth},</if>
+            <if test="spoilingHeight != null">                                         spoiling_height = #{spoilingHeight},</if>
+            <if test="subNodeIds != null and subNodeIds != ''">                        sub_node_ids = #{subNodeIds},</if>
+            <if test="nodeIds != null and nodeIds != ''">                              node_ids = #{nodeIds},</if>
+            <if test="priority != null">                                               priority = #{priority},</if>
+            <if test="eventRadius != null">                                            event_radius = #{eventRadius},</if>
+            <if test="velocity != null">                                               velocity = #{velocity},</if>
+            <if test="description != null and description != ''">                      description = #{description},</if>
+            <if test="createTime != null">                                             create_time = #{createTime},</if>
+            update_time = current_timestamp,<!-- #{updateTime} -->
+            <if test="roadName != null and roadName != ''">                            road_name = #{roadName},</if>
+            <if test="jamLevel != null">                                               jam_level = #{jamLevel},</if>
+            <if test="eventConfidence != null">                                        event_confidence = #{eventConfidence},</if>
+            <if test="drcEventReportTime != null">                                     drc_event_report_time = #{drcEventReportTime},</if>
+            <if test="occurTime != null">                                              occur_time = #{occurTime},</if>
+            <if test="trafficEventCause != null and trafficEventCause != ''">          traffic_event_cause = #{trafficEventCause},</if>
+            <if test="manualConfirm != null">                                          manual_confirm = #{manualConfirm},</if>
+            <!--<if test="forbiddenZoneId != null">                                        forbidden_zone_id = #{forbiddenZoneId},</if>-->
+            forbidden_zone_id = #{forbiddenZoneId},
+            <if test="sectionId != null and sectionId != ''">                          section_id = #{sectionId},</if>
+        </trim>
+        <where>
+            <if test="trafficEventId != null">
+                traffic_event_id = #{trafficEventId}
+            </if>
+            <if test="drcEventReportId != null">
+                and drc_event_report_id = #{drcEventReportId}
+            </if>
+        </where>
+    </update>
+
+</mapper>

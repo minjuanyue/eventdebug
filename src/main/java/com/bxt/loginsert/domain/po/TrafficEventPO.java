@@ -1,0 +1,93 @@
+package com.bxt.loginsert.domain.po;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.CollectionUtils;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author wangyang
+ * 对应事件表traffic_event
+ */
+@Data
+public class TrafficEventPO implements Serializable {
+    private static final long serialVersionUID = 7247714666080613254L;
+    private Long trafficEventId;
+    private Long drcId;
+    private Integer trafficEventType;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private List<JudgeTimePO> judgeTimes;
+    private String directionIndication;
+    private Integer isRelieved;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date relieveTime;
+    private Long drcEventReportId;
+    private Integer isMock;
+    private String hdLaneIds;
+    private String hdConnectionIds;
+    private List<UtmLocPO> utmLoc;
+    private Integer checkStatus;
+    private Integer spoilingLength;
+    private Integer spoilingWidth;
+    private Integer spoilingHeight;
+    private String subNodeIds;
+    private String nodeIds;
+    private List<GpsLocPO> gpsLoc;
+    private Integer priority;
+    private List<LaneInfoPO> laneInfo;
+    private Integer eventRadius;
+    private Integer velocity;
+    private String description;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
+    private List<PileLocPO> pileloc;
+    private String roadName;
+    private Integer jamLevel;
+    private Integer eventConfidence;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date drcEventReportTime;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date occurTime;
+    private List<TrafficEventObjectPO> objects;
+    private List<TrafficEventImagePO> trafficEventImageUrls;
+    private String trafficEventCause;
+    private Integer manualConfirm;
+    private Integer forbiddenZoneId;
+    private String sectionId;
+    private Integer causeLevelOne;
+    private Integer causeLevelTwo;
+    private Integer personNum;
+
+    // 用于判断操作类型
+    private String operation;
+
+    public static List<JudgeTimePO> toJudgeTimesPO(List<Date> judgeTimes) {
+        if (CollectionUtils.isEmpty(judgeTimes)) {
+            return null;
+        }
+        List<JudgeTimePO> result = new ArrayList<>();
+        for (Date judgeTime : judgeTimes) {
+            JudgeTimePO judgeTimePO = new JudgeTimePO();
+            judgeTimePO.setJudgeTime(judgeTime);
+            result.add(judgeTimePO);
+        }
+
+        return result;
+    }
+}
+
+
+

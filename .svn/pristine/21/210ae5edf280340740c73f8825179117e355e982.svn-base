@@ -1,0 +1,34 @@
+server:
+  port: 0
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath:mapper/*/*.xml
+    #configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+kafka:
+  consumer:
+    group-id:
+      prefix: ${kafka.group-id}
+  #消息topic定义
+  topic:
+    DRC_CRM_EVENT_IND: ${kafka.topic.DRC_CRM_EVENT_IND}
+
+    DRC_EVENT_DEBUG_ABNORMAL_PARKING: ${kafka.topic.DRC_EVENT_DEBUG_ABNORMAL_PARKING}
+    DRC_EVENT_DEBUG_CONVERSE_RUNNING: ${kafka.topic.DRC_EVENT_DEBUG_CONVERSE_RUNNING}
+    DRC_EVENT_DEBUG_EXCEED_SPEED: ${kafka.topic.DRC_EVENT_DEBUG_EXCEED_SPEED}
+    DRC_EVENT_DEBUG_JAM: ${kafka.topic.DRC_EVENT_DEBUG_JAM}
+    DRC_EVENT_DEBUG_LOW_SPEED: ${kafka.topic.DRC_EVENT_DEBUG_LOW_SPEED}
+    DRC_EVENT_DEBUG_ROAD_MAINTENANCE: ${kafka.topic.DRC_EVENT_DEBUG_ROAD_MAINTENANCE}
+    DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT: ${kafka.topic.DRC_EVENT_DEBUG_TRAFFIC_ACCIDENT}
+    DRC_EVENT_DEBUG_ULTRA_LOW_SPEED: ${kafka.topic.DRC_EVENT_DEBUG_ULTRA_LOW_SPEED}
+    DRC_EVENT_DEBUG_VIOLATION_PERSON: ${kafka.topic.DRC_EVENT_DEBUG_VIOLATION_PERSON}
+    DRC_EVENT_DEBUG_DETECTOR_INFO: ${kafka.topic.DRC_EVENT_DEBUG_DETECTOR_INFO}
+
+    DRC_CRM_VT_POSITION_IND: ${kafka.topic.DRC_CRM_VT_POSITION_IND}
+    DRC_CRM_KEY_VEHICLE_MAP_IND: ${kafka.topic.DRC_CRM_KEY_VEHICLE_MAP_IND}
+
+logging:
+  config: classpath:logback-spring.xml

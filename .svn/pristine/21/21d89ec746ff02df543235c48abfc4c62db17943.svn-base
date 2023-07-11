@@ -1,0 +1,205 @@
+package com.bxt.loginsert;
+
+import com.bxt.loginsert.domain.po.PileLocPO;
+import com.bxt.loginsert.domain.po.debug.*;
+import com.bxt.loginsert.domain.repository.DrcEventDebugRoadCloseAdjDetectorInfoMapper;
+import com.bxt.loginsert.domain.repository.DrcEventDebugRoadCloseDetectorInfoMapper;
+import com.bxt.loginsert.domain.repository.DrcEventDebugRoadCloseMapper;
+import com.bxt.loginsert.domain.repository.DrcEventDebugTrafficJamEventInfoMapper;
+import com.bxt.loginsert.domain.service.DrcEventDebugService;
+import event_debug.DrcEventDebug;
+import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.CollectionUtils;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@SpringBootTest(classes = LoginsertApplication.class)
+@RunWith(SpringRunner.class)
+public class LoginsertApplicationTests {
+
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
+
+    @Autowired
+    private DrcEventDebugTrafficJamEventInfoMapper mapper;
+
+    @Test
+    public void batchInsertTest() {
+        // 5000条  461ms
+
+        List<TrafficJamEventInfoPO> pos = createData(5000);
+        System.out.println("batchInsertTest开始插入...");
+        long start = System.currentTimeMillis();
+
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        DrcEventDebugTrafficJamEventInfoMapper mapp1 =sqlSession.getMapper(DrcEventDebugTrafficJamEventInfoMapper.class);
+
+        pos.forEach(po -> {
+            mapp1.insertOne(po, 1L);
+        });
+
+        sqlSession.commit();
+        sqlSession.close();
+        long end = System.currentTimeMillis();
+        System.out.println("batchInsertTest 共用时 " + (end-start));
+
+    }
+
+
+    @Test
+    public void batchInsertTest22() {
+        // 5000条  461ms
+
+        DrcEventDebugRoadClosePO po = createRoadData();
+        System.out.println("batchInsertTest开始插入...");
+        long start = System.currentTimeMillis();
+
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+
+        try {
+
+            DrcEventDebugRoadCloseMapper mapp1 =sqlSession.getMapper(DrcEventDebugRoadCloseMapper.class);
+            mapp1.insertOne(po);
+            sqlSession.commit();
+
+            DrcEventDebugRoadCloseDetectorInfoMapper mapp2 =sqlSession.getMapper(DrcEventDebugRoadCloseDetectorInfoMapper.class);
+            int k = 0;
+            for (RoadCloseDetectorInfoPO detectorInfoPO : po.getStDetectorInfo()) {
+                k++;
+                if (k < 500) {
+                    detectorInfoPO.setDrcEventDebugRoadCloseId(po.getId());
+                }
+                mapp2.insertOne(detectorInfoPO);
+            }
+
+            sqlSession.commit();
+
+            DrcEventDebugRoadCloseAdjDetectorInfoMapper mapp3 =sqlSession.getMapper(DrcEventDebugRoadCloseAdjDetectorInfoMapper.class);
+            for (RoadCloseDetectorInfoPO detectorInfoPO : po.getStDetectorInfo()) {
+                System.out.println("id="+detectorInfoPO.getId());
+                if (!CollectionUtils.isEmpty(detectorInfoPO.getStAdjInfos())) {
+                    detectorInfoPO.getStAdjInfos().forEach(adjDetectorInfoPO -> {
+                        adjDetectorInfoPO.setDrcEventDebugRoadCloseDetectorInfoId(detectorInfoPO.getId());
+                        mapp3.insertOne(adjDetectorInfoPO);
+                });
+                }
+            }
+
+            sqlSession.commit();
+            long end = System.currentTimeMillis();
+            System.out.println("batchInsertTest 共用时 " + (end-start));
+
+            for (RoadCloseDetectorInfoPO detectorInfoPO : po.getStDetectorInfo()) {
+                System.out.println(detectorInfoPO.getId());
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("我要回滚了");
+            sqlSession.rollback();
+        } finally {
+
+            sqlSession.close();
+        }
+    }
+//
+//    @Test
+//    public void forEachTest() {
+//        // 3000条 460ms
+//        // 有最大限制  SQL超过35000 byte会直接报错
+//        List<TrafficJamEventInfoPO> pos = createData(3000);
+//        System.out.println("forEachTest开始插入...");
+//        long start = System.currentTimeMillis();
+//
+//        mapper.insertList(pos, 1L);
+//
+//        long end = System.currentTimeMillis();
+//
+//        System.out.println("forEachTest 共用时 " + (end-start));
+//
+//    }
+
+    private DrcEventDebugRoadClosePO createRoadData() {
+
+        DrcEventDebugRoadClosePO.DrcEventDebugRoadClosePOBuilder builder = DrcEventDebugRoadClosePO.builder();
+            builder.ulFrame(1L);
+            builder.ulSubFrame(2L);
+            builder.ulCycle(3L);
+
+        if (false) {
+            List<RoadCloseEventInfoPO> eventInfoVOS = new ArrayList();
+            for (int i=0; i<4000; i++) {
+                RoadCloseEventInfoPO.RoadCloseEventInfoPOBuilder sb = RoadCloseEventInfoPO.builder();
+                    sb.eventId(1L);
+                    sb.evenType(1);
+                    sb.mergeEventId("123");
+                    sb.slDetectorId("456");
+                    sb.dbUtmX(3.2);
+                    sb.dbUtmY(3.3);
+                    sb.ulLowVehicleSize(123);
+                    sb.ulLowVehicleThreshold(234);
+                eventInfoVOS.add(sb.build());
+            }
+            builder.stEventInfo(eventInfoVOS);
+        }
+
+        if (true) {
+            List<RoadCloseDetectorInfoPO> detectorInfoVO = new ArrayList();
+
+            for (int i=0; i<4000; i++) {
+                RoadCloseDetectorInfoPO.RoadCloseDetectorInfoPOBuilder sb = RoadCloseDetectorInfoPO.builder();
+
+                    sb.slId(12);
+                    sb.slState(1);
+                    sb.ulVehiclesOfReach(12L);
+                    sb.ulHistoryVehicles(34L);
+                    sb.ulCycleOfNonReach(5L);
+                    sb.ulMeanDt(6L);
+                    sb.ulMaxDt(7L);
+                    List<RoadCloseAdjDetectorInfoPO> l = new ArrayList<>();
+                    for (int j=0; j<4; j++) {
+                        l.add(RoadCloseAdjDetectorInfoPO.builder().slDetectorId(3).dbCoeff(3.3).build());
+                    }
+                    sb.stAdjInfos(l);
+                    sb.dbP(3.3);
+                    sb.dbM(2.3);
+                    sb.dbS2(5.3);
+                    sb.slAdjDetectorId(1);
+                    sb.dbUtmX(3.3);
+                    sb.dbUtmY(6.3);
+                detectorInfoVO.add(sb.build());
+
+            }
+            builder.stDetectorInfo(detectorInfoVO);
+        }
+
+        return builder.build();
+    }
+
+    private List<TrafficJamEventInfoPO> createData(int count) {
+
+        List<TrafficJamEventInfoPO> pos = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            TrafficJamEventInfoPO.TrafficJamEventInfoPOBuilder builder = TrafficJamEventInfoPO.builder();
+            builder.dbUtmX(1.11);
+            builder.dbUtmY(2.22);
+            builder.eventId(i + 1L);
+            builder.evenType(i);
+            builder.mergeEventId("1");
+            builder.slDetectorId("1");
+            pos.add(builder.build());
+        }
+        return pos;
+    }
+}

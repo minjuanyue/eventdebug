@@ -1,0 +1,61 @@
+package com.bxt.loginsert.domain.service;
+
+
+import com.google.protobuf.InvalidProtocolBufferException;
+
+/**
+ * debug服务层
+ */
+public interface DrcEventDebugService {
+
+    /**
+     * 异常停车
+     */
+    void saveAbnormalParking(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 逆行
+     */
+    void saveConverseRunning(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 超速
+     */
+    void saveExceedSpeed(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 拥堵
+     */
+    void saveJam(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 低速
+     */
+    void saveLowSpeed(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 道路关闭
+     */
+    void saveRoadClose(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 交通意外
+     */
+    void saveTrafficAccident(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 超低速
+     */
+    void saveUltraLowSpeed(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 违章人
+     */
+    void saveViolationPerson(byte[] msg) throws InvalidProtocolBufferException;
+
+    /**
+     * 监测器信息
+     */
+    void saveDetectorInfo(byte[] msg) throws InvalidProtocolBufferException;
+
+}

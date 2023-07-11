@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugAbnormalParkingMapper">
+
+    <insert id="insertOne">
+        insert into
+            drc_event_debug_abnormal_parking
+        values
+            (
+            nextval('seq_drc_event_debug_abnormal_parking'),
+            #{frame},
+            #{subFrame},
+            #{rctpId},
+            #{eventId},
+            #{eventType},
+            #{state},
+            #{cState},
+            #{obsState},
+            #{diffDistance},
+            #{ulMaxWaitTime},
+            #{centerPostionX},
+            #{centerPostionY},
+            #{direcRad},
+            #{largeMajorAxisRadius},
+            #{largeMinorAxisRadius},
+            #{smallMajorAxisRadius},
+            #{smallMinorAxisRadius},
+            #{newObsUuid},
+            #{newObsFrame},
+            #{newObsSubFrame},
+            #{newObsX},
+            #{newObsY},
+            #{newObsDrsu},
+            #{newObsLane},
+            #{newObsHdLane},
+            #{newObsHdConnection},
+            #{firstObsUuid},
+            #{firstObsFrame},
+            #{firstObsSubFrame},
+            #{firstObsX},
+            #{firstObsY},
+            #{firstObsDrsu},
+            #{firstObsLane},
+            #{firstObsHdLane},
+            #{firstObsHdConnection},
+            #{strDetectorInfo},
+            #{strExtParam},
+            #{ulDrcId},
+            #{vehicleType},
+            #{strPlateNo}
+            )
+
+    </insert>
+
+</mapper>

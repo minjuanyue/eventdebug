@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.track.TrackVtPositionMapper">
+
+    <insert id="insertOne">
+        insert into
+            drc_vt_position
+            (
+             ul_trans_id,
+             ul_drc_id,
+             str_vt_id,
+             str_plate_number,
+             st_position_x,
+             st_position_y,
+             st_position_z,
+             st_speed_x,
+             st_speed_y,
+             st_speed_z,
+             sl_lane_id,
+             sl_connection_id,
+             sl_timestamp
+             )
+        values
+               (
+                #{ulTransId},
+                #{ulDrcId},
+                #{strVtId},
+                #{strPlateNumber},
+                #{stPositionX},
+                #{stPositionY},
+                #{stPositionZ},
+                #{stSpeedX},
+                #{stSpeedY},
+                #{stSpeedZ},
+                #{slLaneId},
+                #{slConnectionId},
+                #{slTimestamp}
+                )
+    </insert>
+
+</mapper>

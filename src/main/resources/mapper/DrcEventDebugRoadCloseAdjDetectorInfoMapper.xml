@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugRoadCloseAdjDetectorInfoMapper">
+
+    <insert id="insertList">
+        insert into
+            drc_event_debug_road_close_adj_detector_info
+        values
+        <foreach collection="list" item="adjDetectorInfo" index="index" separator=",">
+            (
+                #{drcEventDebugRoadCloseDetectorInfoId},
+                #{adjDetectorInfo.slDetectorId},
+                #{adjDetectorInfo.dbCoeff}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOne">
+        insert into
+            drc_event_debug_road_close_adj_detector_info
+        values
+            (
+                #{adjDetectorInfo.drcEventDebugRoadCloseDetectorInfoId},
+                #{adjDetectorInfo.slDetectorId},
+                #{adjDetectorInfo.dbCoeff}
+            )
+    </insert>
+
+</mapper>

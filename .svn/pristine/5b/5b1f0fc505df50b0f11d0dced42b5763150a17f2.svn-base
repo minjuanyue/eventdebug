@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugDetectorInfoMapper" >
+
+  <insert id="insertSelective" parameterType="com.bxt.loginsert.domain.po.debug.DrcEventDebugDetectorInfoPO" keyProperty="id" useGeneratedKeys="true">
+    insert into drc_event_debug_detector_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="frame != null" >
+        frame,
+      </if>
+      <if test="subFrame != null" >
+        sub_frame,
+      </if>
+      <if test="ulDrcId != null" >
+        ul_drc_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="frame != null" >
+        #{frame,jdbcType=INTEGER},
+      </if>
+      <if test="subFrame != null" >
+        #{subFrame,jdbcType=INTEGER},
+      </if>
+      <if test="ulDrcId != null" >
+        #{ulDrcId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

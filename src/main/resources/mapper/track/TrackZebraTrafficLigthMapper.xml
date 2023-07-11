@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.track.TrackZebraTrafficLigthMapper">
+
+    <insert id="insertList">
+        insert into
+            drc_zebra_traffic_ligth
+            (
+            zebra_id,
+            st_position_x,
+            st_position_y,
+            st_position_z,
+            e_color,
+            e_light_type,
+            ul_is_twinkle,
+            ul_countdown_time,
+            ul_id
+            )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.zebraId},
+            #{item.stPositionX},
+            #{item.stPositionY},
+            #{item.stPositionZ},
+            #{item.eColor},
+            #{item.eLightType},
+            #{item.ulIsTwinkle},
+            #{item.ulCountdownTime},
+            #{item.ulId}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

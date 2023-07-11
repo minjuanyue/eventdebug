@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.TrafficEventHistoryMapper">
+
+    <insert id="insertOne" parameterType="com.bxt.loginsert.domain.po.TrafficEventHistoryPO">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT nextval('seq_traffic_event_history'::regclass) as id
+        </selectKey>
+
+        insert into
+        traffic_event_history
+        values (
+        #{id},
+        #{trafficEventId},
+        #{drcId},
+        #{trafficEventType},
+        #{directionIndication},
+        #{isRelieved},
+        #{relieveTime},
+        #{drcEventReportId},
+        #{isMock},
+        #{hdLaneIds},
+        #{hdConnectionIds},
+        #{checkStatus},
+        #{spoilingLength},
+        #{spoilingWidth},
+        #{spoilingHeight},
+        #{subNodeIds},
+        #{nodeIds},
+        #{priority},
+        #{eventRadius},
+        #{velocity},
+        #{description},
+        current_timestamp,<!-- createTime -->
+        current_timestamp<!-- #{updateTime},-->,
+        #{roadName},
+        #{jamLevel},
+        #{eventConfidence},
+        #{drcEventReportTime},
+        #{trafficEventCause},
+        #{forbiddenZoneId},
+        #{sectionId}
+        )
+    </insert>
+
+</mapper>

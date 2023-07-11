@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bxt.loginsert.domain.repository.DrcEventDebugDetectorInfoDetailMapper" >
+
+
+  <insert id="insertSelective" parameterType="com.bxt.loginsert.domain.po.debug.DrcEventDebugDetectorInfoDetailPO" >
+    insert into drc_event_debug_detector_info_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="slId != null" >
+        sl_id,
+      </if>
+      <if test="slState != null" >
+        sl_state,
+      </if>
+      <if test="dbAvgSpeed != null" >
+        db_avg_speed,
+      </if>
+      <if test="slVels != null" >
+        sl_vels,
+      </if>
+      <if test="dbUtmX != null" >
+        db_utm_x,
+      </if>
+      <if test="dbUtmY != null" >
+        db_utm_y,
+      </if>
+      <if test="detectorInfoId != null" >
+        detector_info_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="slId != null" >
+        #{slId,jdbcType=INTEGER},
+      </if>
+      <if test="slState != null" >
+        #{slState,jdbcType=INTEGER},
+      </if>
+      <if test="dbAvgSpeed != null" >
+        #{dbAvgSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="slVels != null" >
+        #{slVels,jdbcType=INTEGER},
+      </if>
+      <if test="dbUtmX != null" >
+        #{dbUtmX,jdbcType=DOUBLE},
+      </if>
+      <if test="dbUtmY != null" >
+        #{dbUtmY,jdbcType=DOUBLE},
+      </if>
+      <if test="detectorInfoId != null" >
+        #{detectorInfoId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

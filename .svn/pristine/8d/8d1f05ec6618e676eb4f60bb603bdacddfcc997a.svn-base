@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxt.loginsert.domain.repository.TrafficEventJudgeTimeMapper">
+
+    <insert id="insertList">
+        insert into
+            traffic_event_judge_time
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+                nextval('seq_traffic_event_judge_time'),
+                #{historyPrimaryKey},
+                #{item.judgeTime}
+            )
+        </foreach>
+    </insert>
+
+</mapper>
